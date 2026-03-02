@@ -93,9 +93,76 @@ button:focus-visible {
 
 .child{
   outline: 1px solid blue;
+  display:flex;
+  /* place-items only does align-items in flex so use justify manually */
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  list-style: none;
+  padding: 0;
 }
 
 .parent__2{
   gap:1rem;
   grid-template-columns: 1fr 3fr;
+}
+.parent__3{
+  gap:1rem;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 5rem 2fr;
+}
+.parent__4{
+  gap:1rem;
+  grid-template-columns: repeat(7,1fr);
+}
+.parent__5{
+  gap:1rem;
+  grid-template-columns: repeat(4,1fr);
+  .child__3{
+    /* this is based on column lines so this will occupy 3 columns */
+    /* a four column grid has 5 column lines */
+    grid-column: 1 / 4;
+  }
+  .child__2{
+    /* loops back  */
+    grid-column:-2;
+  }
+  .child__5{
+    /* will occupy all columns */
+    grid-column: 1 / -1;
+  }
+  .child__6{
+    grid-column: span 2;
+
+  }
+}
+
+.parent__6{
+  gap:1rem;
+  grid-template-columns: repeat(4,1fr);
+  /* fixes gaps due to column spanning */
+  grid-auto-flow: row dense;
+  .child__3{
+    grid-column: span 3;
+
+}
+  }
+
+.parent__7{
+  gap:1rem;
+  grid-template-columns: 2fr 5fr;
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas:
+  'sidebar header'
+  'sidebar main';
+  .child__1{
+    grid-area:sidebar;
+
+}
+  }
+/* tab order will be based on dom node order not GRID position */
+.parent__8{
+  gap:1rem;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: 1fr 1fr;
 }
