@@ -164,5 +164,30 @@ button:focus-visible {
 .parent__8{
   gap:1rem;
   grid-template-columns: 200px 200px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 200px 200px 200px;
+  /* we can justify the columns */
+  justify-content:end;
+  /* or the items themselves inside the columns */
+  justify-items:center;
+  
+  /* same as above but affects the rows */
+  align-content:end;
+  align-items:end;
+  .child{
+    min-height:3rem;
+    min-width:3rem;
+  }
+}
+.parent__9{
+  gap:1rem;
+  /* if you define explicit tracks then place-content wont center  */
+  /* grid-template-columns: 700px; */
+  /* grid-template-rows: 700px; */
+  place-content:center;
+  /* place-items needed to center if explicit tracks are present , because remember if track is larger than items inside the track need to be centered , but if no explicit track is defined both shrink to item's size */
+  /* place-items:center; */
+  .child{
+    width:500px;
+    height:500px;
+  }
 }
