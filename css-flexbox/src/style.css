@@ -24,10 +24,11 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: grid;
   min-width: 320px;
+  width: 100mvw;
   min-height: 100vh;
+  padding:3rem;
 }
 
 h1 {
@@ -64,5 +65,54 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* user styles */
+.parent{
+  display:flex;
+  outline: 1px solid red;
+  padding:1rem;
+  width:calc(100% - 1.5rem);
+  height: calc(100vh - 1.5rem);
+  margin-bottom: 1rem;
+}
+/* BYDEFAULT: */
+/* Primary axis: Children will be bunched up at the start of the container. */
+/* Cross axis: Children will stretch out to fill the entire container. */
+.child{
+  font-size:1rem; 
+  min-width:3rem;
+  min-height:3rem;
+  display:grid;
+  place-content:center;
+  outline: 1px solid yellow;
+}
+.parent__2{
+  justify-content: center; 
+  align-items: flex-start;
+}
+/* width on a flex item is more of a suggestion than hard constraint */
+/* there is no justify-self or justify-items in flexbox  */
+/* In a Flexbox row, flex-basis does the same thing as width. In a Flexbox column, flex-basis does the same thing as height. */
+.parent__3{
+  .child__1{
+    flex-grow:1;
+  }
+  .child__2{
+    flex-grow: 2;
+  }
+}
+/* The Flexbox algorithm refuses to shrink a child below its minimum size. The content will overflow rather than shrink further, no matter how high we crank flex-shrink! */
+/* we can redefine the minimum size use min-width to fix this  */
+
+/* auto margins are useful in flexbox for header layout */
+
+.parent__4{
+  gap:1rem;
+  flex-wrap:wrap;
+  align-content: flex-end;
+  .child{
+    flex-basis: 35%;
   }
 }
