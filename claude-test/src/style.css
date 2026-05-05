@@ -1,0 +1,302 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:      #f7f6f3;
+  --fg:      #111110;
+  --muted:   #78716c;
+  --border:  #e5e3df;
+  --card-bg: #ffffff;
+  --accent:  #16a34a;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+body { min-height: 100svh; }
+
+#app { width: 100%; display: block; }
+
+/* ── NAV ─────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  position: relative;
+  z-index: 20;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--fg);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 450;
+  letter-spacing: -0.1px;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--fg); }
+
+.btn-nav {
+  background: var(--fg);
+  color: #fff;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: -0.1px;
+  transition: opacity 0.15s;
+}
+.btn-nav:hover { opacity: 0.75; }
+
+/* ── HERO ────────────────────────────────────── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ── HERO COPY ───────────────────────────────── */
+.hero-copy {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 56px 24px 44px;
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-copy h1 {
+  font-size: clamp(50px, 6.5vw, 82px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+
+.hl {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 400px;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.btn-cta {
+  background: var(--fg);
+  color: #fff;
+  border: none;
+  padding: 11px 26px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: -0.1px;
+  transition: opacity 0.15s, transform 0.12s;
+}
+.btn-cta:hover { opacity: 0.8; transform: translateY(-1px); }
+
+.link-arrow {
+  font-size: 14px;
+  font-weight: 450;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: -0.1px;
+  transition: color 0.15s;
+}
+.link-arrow:hover { color: var(--fg); }
+
+/* ── CARDS VIEWPORT ──────────────────────────── */
+.cards-vp {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── CARD BASE ───────────────────────────────── */
+.vd-card {
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  left: 50%;
+  width: 188px;
+
+  border-radius: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 2px  rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    0 20px 56px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  will-change: transform, opacity;
+
+  animation:
+    card-enter 0.85s cubic-bezier(0.22, 1, 0.36, 1) both,
+    card-float 5.5s ease-in-out infinite;
+}
+
+/* ── CARD CHROME (traffic-light dots) ────────── */
+.card-chrome {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 11px 13px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-r { background: #ff5f57; }
+.dot-y { background: #ffbd2e; }
+.dot-g { background: #28c840; }
+
+/* ── CARD BODY WIDGETS ───────────────────────── */
+.card-body {
+  padding: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+}
+
+.w {
+  border-radius: 6px;
+  background: #f0efec;
+  flex-shrink: 0;
+}
+.w-full { height: 40px; }
+.w-tall { height: 84px; }
+.w-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.w-half { height: 30px; border-radius: 6px; background: #f0efec; flex-shrink: 0; }
+
+/* Fade out the bottom of the card body */
+.card-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--card-bg));
+  pointer-events: none;
+}
+
+/* ── PER-CARD POSITIONS & STAGGER ────────────── */
+/*
+  Center card (c4) at --tx:0. Adjacent cards are 148px apart.
+  Each card's left edge starts at 50%; we subtract half-width (94px) to center c4.
+  Stagger: entrance starts at 0, 120ms, 240ms… float follows 0.85s later.
+*/
+.c1 { --tx:-444px; --rz: 0.7deg; --op:0.28; z-index:1; animation-delay:  0.00s, 0.85s; }
+.c2 { --tx:-296px; --rz: 0.4deg; --op:0.50; z-index:2; animation-delay:  0.12s, 0.97s; }
+.c3 { --tx:-148px; --rz: 0.2deg; --op:0.72; z-index:3; animation-delay:  0.24s, 1.09s; }
+.c4 { --tx:   0px; --rz: 0.0deg; --op:1.00; z-index:5; animation-delay:  0.36s, 1.21s; }
+.c5 { --tx: 148px; --rz:-0.2deg; --op:0.72; z-index:3; animation-delay:  0.48s, 1.33s; }
+.c6 { --tx: 296px; --rz:-0.4deg; --op:0.50; z-index:2; animation-delay:  0.60s, 1.45s; }
+.c7 { --tx: 444px; --rz:-0.7deg; --op:0.28; z-index:1; animation-delay:  0.72s, 1.57s; }
+
+/* ── ANIMATIONS ──────────────────────────────── */
+/*
+  card-enter: fades in + slides up into the tilt position (per-card stagger).
+  card-float: subtle continuous rock once visible; starts 0.85s after enter delay
+              so it kicks in exactly when card-enter finishes.
+*/
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform:
+      translateX(calc(var(--tx) - 94px))
+      translateY(32px)
+      perspective(900px)
+      rotateY(30deg)
+      rotateX(-6deg)
+      rotateZ(var(--rz));
+  }
+  to {
+    opacity: var(--op);
+    transform:
+      translateX(calc(var(--tx) - 94px))
+      translateY(0px)
+      perspective(900px)
+      rotateY(30deg)
+      rotateX(-6deg)
+      rotateZ(var(--rz));
+  }
+}
+
+@keyframes card-float {
+  0%, 100% {
+    transform:
+      translateX(calc(var(--tx) - 94px))
+      translateY(0px)
+      perspective(900px)
+      rotateY(30deg)
+      rotateX(-6deg)
+      rotateZ(var(--rz));
+  }
+  50% {
+    transform:
+      translateX(calc(var(--tx) - 94px))
+      translateY(0px)
+      perspective(900px)
+      rotateY(20deg)
+      rotateX(-3deg)
+      rotateZ(var(--rz));
+  }
+}
